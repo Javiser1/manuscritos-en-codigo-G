@@ -1,0 +1,24 @@
+from fontTools.ttLib import TTFont
+
+# Ruta a tu archivo de fuente TrueType (.ttf)
+font_path = "ruta/a/tu/fuente.ttf"
+
+# Carga la fuente
+font = TTFont(font_path)
+
+# Selecciona el tamaño y características de la fuente
+font_size = 100
+font.set_pt_size(font_size)
+
+# Caracteres a dibujar
+characters_to_draw = "Hola"  # Puedes cambiar a las letras que desees
+
+# Genera las representaciones de contornos de las letras
+for char in characters_to_draw:
+    glyph_set = font.getGlyphSet()
+    glyph = glyph_set.get(char)
+    if glyph:
+        # Obtiene los contornos de la letra
+        contours = glyph._glyph.getCoordinates(font)[0]
+        # Aquí podrías convertir los contornos en G-code
+        # Ejemplo: generar movimientos G-code basados en los contornos obtenidos
